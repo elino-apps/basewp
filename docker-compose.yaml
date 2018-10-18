@@ -15,7 +15,7 @@ services:
        - db
      image: mattiashem/wp-base:latest
      ports:
-       - "80:80"
+       - "80:8000"
      restart: always
      volumes:
        - ./:/repo/wp-content
