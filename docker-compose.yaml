@@ -3,19 +3,45 @@ version: '3'
 services:
    db:
      image: mysql:5.7
-     restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
-
-   wordpress:
+     volumes:
+       - ./seed:/seed
+   phpmyadmin:
+     image: phpmyadmin/phpmyadmin
+     environment:
+       PMA_HOST: db
+       PMA_USER: root
+       PMA_PASSWORD: somewordpress
+     ports:
+       - "82:80"
+   wordpress4:
      depends_on:
        - db
-     image: mattiashem/wp-base:latest
+     image: mattiashem/wp-base:s1
      ports:
        - "80:8000"
+       - "443:8443"
+     volumes:
+       - ./:/repo/wp-content
+     environment:
+       DBHOST: db
+       SITENAME: wordpress
+       DBPASS: wordpress
+       SMTP_HOST: mailgun.com
+       SMTP_USER: non@test.com
+       SMTP_PASS: password
+       SMTP_FROM: non@test.com
+   wordpress5:
+     depends_on:
+       - db
+     image: mattiashem/wp-base:5.0
+     ports:
+       - "81:8000"
+       - "444:8443"
      restart: always
      volumes:
        - ./:/repo/wp-content
