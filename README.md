@@ -18,18 +18,13 @@ This will bring up the developer docker images and setup the wordpress for you.
 You can now wisit your wordpress on your local computer at
 
 
-### For wordpress 4
+### For wordpress 
 
 **http://localhost**
 
 **http://localhost/wp-admin** (admin/admin)
 
 
-### For wordpress 5
-
-**http://localhost:81**
-
-**http://localhost:81/wp-admin** (myadmin/admin)
 
 
 If you need a nother port modify the docker-compose.yaml and change port 80 to other port.
@@ -44,52 +39,12 @@ You can also change so that wordpress 5 is running on port 80 and 443
 
 
 ### HTTPS
-The docker will serve a page under https://localhost for wordpress4 and https://localhost:444 for wordpress 5. The certificate is self signed and need to be accepted.
+The docker will serve a page under https://localhost. The certificate is self signed and need to be accepted.
 
 
 ### DB Seed
 When you run docker-compose the sql in the file seed/wordpress.sql will be seeden into the SQL server
 
-IMPORTANT the dbseed will run everytime you **start the contianer** and this will RESET you databas.
-To disable remove the file seed/wordpress.sql
-
-Sometimes the seed will time out id the db is slow at starting but then stop and start the docker-compose again.
-
-You will see the followig output if successfull
-
-```
-dbseed_1      | Slep so db can start
-dbseed_1      | Seeding database from file seed/wordpress.sql
-dbseed_1      | mysql: [Warning] Using a password on the command line interface can be insecure.
-dbseed_1      | mysql: [Warning] Using a password on the command line interface can be insecure.
-dbseed_1      | Tables_in_wordpress
-dbseed_1      | wp5_commentmeta
-dbseed_1      | wp5_comments
-dbseed_1      | wp5_links
-dbseed_1      | wp5_options
-dbseed_1      | wp5_postmeta
-dbseed_1      | wp5_posts
-dbseed_1      | wp5_term_relationships
-dbseed_1      | wp5_term_taxonomy
-dbseed_1      | wp5_termmeta
-dbseed_1      | wp5_terms
-dbseed_1      | wp5_usermeta
-dbseed_1      | wp5_users
-dbseed_1      | wp_commentmeta
-dbseed_1      | wp_comments
-dbseed_1      | wp_links
-dbseed_1      | wp_options
-dbseed_1      | wp_postmeta
-dbseed_1      | wp_posts
-dbseed_1      | wp_term_relationships
-dbseed_1      | wp_term_taxonomy
-dbseed_1      | wp_termmeta
-dbseed_1      | wp_terms
-dbseed_1      | wp_usermeta
-dbseed_1      | wp_users
-basewp_dbseed_1 exited with code 0
-
-``` 
 
 
 
